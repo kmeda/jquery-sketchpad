@@ -1,0 +1,53 @@
+#header {
+	position: fixed;
+	top: 0; left: 0;
+	height: 45px; width: 100%;
+	background-color: #cc0000;
+}
+#header>h1{
+	position: relative; right: 100px;
+	text-align: right;
+	line-height: 0;
+	font-family: cursive;
+	color: white;
+}
+
+#header>form {
+	float: left;
+	position: relative; top: -25px; left: 30px;
+	
+}
+p{
+	display: inline;
+	color: white;
+}
+
+.wrapper {
+  width: 600px; top: 60px;
+  margin: 15px auto;
+  overflow: auto;
+  position: relative;
+
+}
+
+.grid {
+  float: left;
+  background-color: black;
+  display: inline-block;
+}
+
+
+.minions-left {
+	width: 100px;
+	position: fixed;
+	top: 400px; left: 2px;
+	float: left;
+}
+
+.minions-right {
+	width: 550px;
+	position: fixed;
+	top: 380px; left: 945px;
+	float: right;
+}
+
