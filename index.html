@@ -1,23 +1,21 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>The Odin Project - Javascript/Jquery project.</title>
+	<title>The Odin Project - Etch A Sketch</title>
 	<link rel="stylesheet" type="text/css" href="style.css">
-	
-	
+
+
 </head>
 <body>
-
-<div id="header"><h1>Etch-A-Sketch</h1>
-
-	<form>
-		<input id="gridonoff" type="checkbox" name="gridonoff"><p>Grid On/Off</p>
-		<button id="reset" type="button">Reset</button>
-		<button id="gridsize" type="button">Grid Size</button>
-		<button id="random" type="button">Random Colors</button>
-		<button id="gradient" type="button">Gradient</button>
-		<button id="trail" type="button">Trail</button>
-	</form>
+<div class="navbar"><h2>Etch-A-Sketch</h2>
+<form class="selections">
+	<input id="gridonoff" type="checkbox" name="gridonoff">
+	<button id="reset" type="button" >Reset</button>
+	<button id="newgrid" type="button" >New Grid</button>
+	<button id="randomcolor" type="button" >Random Color</button>
+	<button id="gradient" type="button" >Gradient</button>
+	<button id="trail" type="button" >Trail</button>
+</form>
 </div>
 
 <div class="wrapper"></div>
@@ -26,6 +24,5 @@
 <div><div class="minions-right minions"><img src="minions1.gif"></div></div>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="script.js"></script>
-
 </body>
 </html>

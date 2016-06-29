@@ -1,112 +1,109 @@
-var boxSize = $(".wrapper").width();
+
+var gridSize = $('.wrapper').width();
 var defaultSquares = 16;
 var defaultColor = "white";
 
-
-$(document).ready(function() {
+$(document).ready(function(){
 	
-    
-    $(':input#gridonoff').prop('checked', false);
-    createSketchPad(defaultSquares);
+	$(":input#gridonoff").prop('checked', false);
+	createGrid(defaultSquares);
 
-    
-	$('input#gridonoff').change( function() {
-	    if($(this).is(':checked')) {
-	    	$('.grid').css('outline', '1px solid white');
-	    } 
-	    else {
-	        $('.grid').css('outline', "none");
-	    }
+	$("input#gridonoff").change(function(){
+		if ($(this).is(':checked')) {
+			$('.grid').css("outline", '1px solid white');
+		} else {
+			$('.grid').css("outline", "none");
+		}
 	});
 	
 
-	$("#gridsize").click(function() {
-		newSize();
+	$('#reset').click(function(){
+		defaultGrid();
 	});
 
-	$("#reset").click(function() {
-		defaultOption();
+	$('#newgrid').click(function(){
+		newGrid();
+
 	});
 
-    $("#trail").click(function() {
-        trailOption();
-    });
+	$('#randomcolor').click(function(){
+		randomColor();
+	});
 
-    $("#gradient").click(function() {
-    	gradientOption();
-    });
+	$('#gradient').click(function(){
+		gradient();
+	});
 
-    $("#random").click(function() {
-        randomOption();
-    });
+	$('#trail').click(function(){
+		trail();
+	});
+
 });
 
-function createSketchPad(userBoxes) {
-	var squareSize = boxSize / userBoxes;
-	for(var i = 0; i < (userBoxes * userBoxes); i++) {
+
+function createGrid(numberOfSquares){
+	var squareSize = gridSize/numberOfSquares;
+
+	for(var i=0; i<(numberOfSquares*numberOfSquares); i++){
 		$('.wrapper').append('<div class="grid"></div>');
 	}
 	$(".grid").width(squareSize);
 	$(".grid").height(squareSize);
-	defaultOption();
-	
+	defaultGrid();
 }
 
-function newSize() {
-	$(".wrapper").html("");
-	var numSquares = parseFloat(prompt("How many boxes (1-128) do you want on each side? " + 
-		"RETURN for default sides."));
-	
-	if(isNaN(numSquares) ||  (numSquares < 1 || numSquares > 128)) {
-		numSquares = defaultSquares;
-	}
-	createSketchPad(numSquares);
+function clearAll(){
+	$('.grid').unbind();
+	$('.grid').css("background-color", "black");
+	$('.grid').css("opacity", 1);
 }
 
-function clearBoard() {
-	$(".grid").unbind(); 
-	$(".grid").css("background-color", "black");
-	$(".grid").css("opacity", 1);
-}
 
-function defaultOption() {
-	clearBoard();
-	$(".grid").mouseover(function() {
+function defaultGrid(){
+	clearAll();
+	$('.grid').mouseover(function(){
 		$(this).css("background-color", defaultColor);
 	});
 }
 
+function newGrid(){
+	$('.wrapper').html("");
+	var numSquares = parseFloat(prompt("Enter a number between (1-128) or RETURN for default."));
+	if (isNaN(numSquares) || (numSquares < 1 || numSquares > 128)) {
+		numSquares = defaultSquares;
+	}
+	createGrid(numSquares);
+}	
 
-function getRandomColor() {
-	return ('#' + (Math.random().toString(16) + '000000').slice(2, 8));
+function getRandomColor(){
+	return ("#" + (Math.random().toString(16) + '000000').slice(2, 8));
 }
 
-
-function randomOption() {
-	clearBoard();
-	$(".grid").mouseover(function() {
+function randomColor(){
+	clearAll();
+	$('.grid').mouseover(function(){
 		$(this).css("background-color", getRandomColor());
 	});
 }
 
-function trailOption() {
-	clearBoard();
-	$(".grid").mouseenter(function() {
-		$(this).fadeTo(0, 0);
-	});
-	$(".grid").mouseleave(function() {
-		$(this).fadeTo(600, 1);
-	});
-}
-
-function gradientOption() {
-	clearBoard();
-	$(".grid").mouseover(function() {
-		var currentOpacity = $(this).css("opacity")
-		if(currentOpacity != 0) {
-			$(this).css("opacity", currentOpacity - .10);
+function gradient(){
+	clearAll();
+	
+	$('.grid').mouseover(function(){
+		var currentOpacity = $(this).css("opacity");
+		if(currentOpacity != 0){
+			$(this).css("opacity", currentOpacity - 0.15);
 		}
 	});
+
 }
 
-
+function trail() {
+	clearAll();
+	$('.grid').mouseenter(function(){
+		$(this).fadeTo(0, 0);
+	});
+	$('.grid').mouseleave(function(){
+		$(this).fadeTo(700, 1);
+	});
+}
